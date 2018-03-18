@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#app {
+	margin: 0 auto;
+	background: #eee;
+	margin-top: 10px;
+}
+#control {
+	width: 100%;
+	height: 30px;
+	position: relative;
+}
+.mine-level {
+	position: relative;
+}
+.mine-level h5 {
+	line-height: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+#level-choice {
+	position: absolute;
+	top: 100%;
+	left: -5px;
+	z-index: 90;
+	cursor: pointer;
+	background: #e6e6e6
+}
+#level-choice li {
+	height: 30px;
+	width: 80px;
+	text-align: center;
+	opacity: .5;
+	margin-bottom: 3px;
+	line-height: 30px;
+}
+#level-choice li:hover {
+	background: #f40;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+.mine-level-wrap {
+	float: left;
+	margin-left: 20px;
+}
+#mine-flag {
+	float: left;
+	margin-left: 10px;
+}
+#mine-time-wrap {
+	position: absolute;
+	top: 3px;
+	right: 10px;
+}
+#mine-flag span {
+	width: 13px;
+	height: 23px;
+	margin-top: 3px;
+	display: inline-block;
+}
+#mine-time-wrap span {
+	width: 13px;
+	height: 23px;
+	display: inline-block;
+}
+#mine-flag, #mine-time-wrap{
+	display: inline-block;
+	height: 30px;
+}
+.mine-flag span {
+	line-height: 30px;
+	
+}
+.mine-btn {
+	width: 25px;
+	height: 30px;
+	margin: 0 auto;
+}
+#mine-start {
+	width:25px;
+	height: 25px;
+	line-height: 30px;
+	/*margin: 0 auto;*/
+	vertical-align: 2px;
+	display: inline-block;
+}
+.start {
+	background-image: url(./img/face_normal.bmp);
+}
+.failed {
+	background-image: url(./img/face_fail.bmp);
+
+}
