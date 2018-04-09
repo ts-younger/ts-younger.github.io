@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扫雷游戏开发</title>
+	<link rel="stylesheet" href="mine.css">
+</head>
+<body>
+	<div id="app">
+		<div id="control">
+			<div id="mine-flag">
+				<span class="mine-flag-hun"></span><span class="mine-flag-ten"></span><span class="mine-flag-num"></span>
+			</div>
+			<div class="mine-level-wrap">
+				<div class="mine-level">
+					<h5 id="level-btn">难度选择</h5>
+					<ul id="level-choice" class="hide">
+						<li>初级</li>
+						<li>中级</li>
+						<li>高级</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mine-btn">
+				<button id='mine-start' class="start"></button>
+			</div>
+			<div id="mine-time-wrap">
+				<span class="mine-time-hun"></span><span class="mine-time-ten"></span><span class="mine-time-num"></span>
+			</div>
+		</div>
+		<div class="mine-cont">
+			<canvas id="mine" width='600' height='600'></canvas>		
+		</div>
+	</div>
+	<script src="./mine.js"></script>
+	<script>
+		var oDiv = document.getElementById('app');
+		 can = document.getElementById('mine'),
+		 mine = new Mine(can, 99, 20,20),
+		 show = false;
+		 olev = document.getElementById('level-btn'),
+		 ochio = document.getElementById('level-choice');
+		 let aLi =ochio.getElementsByTagName('li');
+		 olev.onclick = function(ev){
+		 	show = !show;
+		 	ev.stopPropagation()
+		 	if(show) ochio.setAttribute('class', 'show');
+		 	else ochio.setAttribute('class', 'hide');
+		 	
+		 }
+		 ochio.onclick = function(ev) {
+		 	let e = ev || window.event;
+		 	let target = e.target || e.srcElement;
+		 	if(target.nodeName.toLowerCase() != 'li') return;
+		 	if(target == aLi[0]) {
+		 		mine = null;
+		 		mine = new Mine(can, 40, 16, 16)
+		 	}else if(target == aLi[1]){
+		 		mine = null;
+		 		mine = new Mine(can, 99, 16, 30)
+		 	}else if(target == aLi[2]){
+		 		mine = null;
+		 		mine = new Mine(can, 248, 30, 30)
+		 	}
+		 	mine.init()
+		 }
+		 document.onclick = function() {
+		 	show = false;
+		 	ochio.setAttribute('class', 'hide')
+		 }
+		can.oncontextmenu = function (){
+			return false
+		}
+		mine.init()
+	</script>
+</body>
+</html>
