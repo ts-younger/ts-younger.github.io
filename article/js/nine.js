@@ -30,7 +30,7 @@ window.onload = function () {
 			}else {
 				if(colorArr.findIndex(function(item) {
 					return item == color
-				}) > 0) {
+				}) > 0 || color == '#EEB422'.toLowerCase()) {
 					i--;
 				}else {
 					colorArr.push(color)
