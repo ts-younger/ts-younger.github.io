@@ -20,24 +20,16 @@ window.onload = function () {
 		let colorArr = [];
 		
 		for(let i = 0; i < 3; i++) {
-			let color ="#";
-			for(let j = 0; j< 6; j++) {
-				color += (Math.random()*16 | 0).toString(16)
-			}
+			let color = '#'+(Math.random()*16777216 | 0).toString(16);
 
-			if(colorArr.length == 0) {
-				colorArr.push(color)
+			if(colorArr.findIndex(function(item) {
+				return item == color
+			}) > 0 || color == '#EEB422'.toLowerCase()) {
+				i--;
 			}else {
-				if(colorArr.findIndex(function(item) {
-					return item == color
-				}) > 0 || color == '#EEB422'.toLowerCase()) {
-					i--;
-				}else {
-					colorArr.push(color)
-				}
-
-			}
-		}
+				colorArr.push(color)
+			}		
+		}	
 		
 		return colorArr;
 	}
