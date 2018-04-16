@@ -1,6 +1,5 @@
 window.onload = function () {
-	var colorArr = ["purple", "#EE0000", "green", "blue", "grey"],
-		startBtn = getDom('#start'),
+	var startBtn = getDom('#start'),
 		endBtn = getDom('#end'),
 		timer = null,
 		aBox = getDom('.box');
@@ -9,7 +8,6 @@ window.onload = function () {
 		if (!str || typeof str !== 'string') return;
 		switch (str.charAt(0)) {
 			case "." : 
-			console.log(str)
 				return document.getElementsByClassName(str.slice(1))
 			break;
 			case "#":
@@ -17,12 +15,18 @@ window.onload = function () {
 			break;
 		}
 	}
+	function getRandomColor() {
+		let color ="#";
+		for(let i = 0; i< 6; i++) {
+			color += (Math.random()*16 | 0).toString(16)
+		}
+		return color;
+	}
 
 	function getRandomArr(arr) {
 		let array = Array.from(arr);
 		let randomArr = [];
 		for(let i = 0; i < 3; i++) {
-			console.log(array)
 			let index = Math.floor(Math.random()*array.length);
 			randomArr.push(array[index]);
 			array.splice(index, 1);
@@ -31,14 +35,12 @@ window.onload = function () {
 	}
 
 	function animate () {
-		let randomColor = getRandomArr(colorArr);
 		let boxArr = getRandomArr(aBox);
-		console.log(randomColor)
 		for(let i = 0; i < aBox.length; i++) {
 			aBox[i].style.background = '#EEB422';	
 		}
 		for(let i = 0; i < 3 ; i++) {
-				boxArr[i].style.background = randomColor[i];
+			boxArr[i].style.background = getRandomColor();
 		}
 	}
 
