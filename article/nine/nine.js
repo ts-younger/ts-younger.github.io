@@ -1,6 +1,7 @@
 window.onload = function () {
 	var startBtn = getDom('#start'),
 		endBtn = getDom('#end'),
+		life = true,
 		timer = null,
 		aBox = getDom('.box');
 
@@ -15,12 +16,30 @@ window.onload = function () {
 			break;
 		}
 	}
-	function getRandomColor() {
-		let color ="#";
-		for(let i = 0; i< 6; i++) {
-			color += (Math.random()*16 | 0).toString(16)
+	function getColorArray() {
+		let colorArr = [];
+		
+		for(let i = 0; i < 3; i++) {
+			let color ="#";
+			for(let j = 0; j< 6; j++) {
+				color += (Math.random()*16 | 0).toString(16)
+			}
+
+			if(colorArr.length == 0) {
+				colorArr.push(color)
+			}else {
+				if(colorArr.findIndex(function(item) {
+					return item == color
+				}) > 0) {
+					i--;
+				}else {
+					colorArr.push(color)
+				}
+
+			}
 		}
-		return color;
+		
+		return colorArr;
 	}
 
 	function getRandomArr(arr) {
@@ -41,16 +60,19 @@ window.onload = function () {
 	}
 	function animate () {
 		let boxArr = getRandomArr(aBox);
+		let colorArr = getColorArray()
 		resetColor()
 		for(let i = 0; i < 3 ; i++) {
-			boxArr[i].style.background = getRandomColor();
+			boxArr[i].style.background = colorArr[i];
 		}
 	}
 
 	startBtn.onclick = function () {
+		if(!life) return;
 		startBtn.style.background = '#EEB422';
 		startBtn.style.color = '#fff';
-		animate()
+		animate();
+		life = false;
 		timer = setInterval(function(){			
 			animate()
 		}, 1000)
@@ -66,6 +88,7 @@ window.onload = function () {
 		setTimeout(function(){
 			endBtn.style.color = '#EEB422';
 			endBtn.style.background = '#fff';			
-		},1000)
+		},1000);
+		life = true;
 	}
 }
