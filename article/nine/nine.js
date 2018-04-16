@@ -1,7 +1,6 @@
 window.onload = function () {
 	var startBtn = getDom('#start'),
 		endBtn = getDom('#end'),
-		life = true,
 		timer = null,
 		aBox = getDom('.box');
 
@@ -29,18 +28,19 @@ window.onload = function () {
 			}else {
 				colorArr.push(color)
 			}		
-		}	
-		
+		}		
 		return colorArr;
 	}
 
 	function getRandomArr(arr) {
 		let array = Array.from(arr);
+		// let array = arr;
 		let randomArr = [];
 		for(let i = 0; i < 3; i++) {
 			let index = Math.floor(Math.random()*array.length);
 			randomArr.push(array[index]);
 			array.splice(index, 1);
+			// Array.prototype.splice(array, index, 1)
 		}
 		return randomArr
 	}
@@ -60,7 +60,7 @@ window.onload = function () {
 	}
 
 	startBtn.onclick = function () {
-		if(!life) return;
+		if(timer) return;
 		startBtn.style.background = '#EEB422';
 		startBtn.style.color = '#fff';
 		animate();
@@ -81,6 +81,6 @@ window.onload = function () {
 			endBtn.style.color = '#EEB422';
 			endBtn.style.background = '#fff';			
 		},1000);
-		life = true;
+		timer = null;
 	}
 }
