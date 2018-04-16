@@ -34,11 +34,14 @@ window.onload = function () {
 		return randomArr
 	}
 
-	function animate () {
-		let boxArr = getRandomArr(aBox);
+	function resetColor(){
 		for(let i = 0; i < aBox.length; i++) {
 			aBox[i].style.background = '#EEB422';	
 		}
+	}
+	function animate () {
+		let boxArr = getRandomArr(aBox);
+		resetColor()
 		for(let i = 0; i < 3 ; i++) {
 			boxArr[i].style.background = getRandomColor();
 		}
@@ -58,9 +61,7 @@ window.onload = function () {
 		startBtn.style.color = '#EEB422';
 		endBtn.style.color = '#fff';
 		endBtn.style.background = '#EEB422';
-		for(let i = 0; i< aBox.length; i++) {
-			aBox[i].style.background = '#EEB422'
-		}
+		resetColor();
 		clearInterval(timer);
 		setTimeout(function(){
 			endBtn.style.color = '#EEB422';
